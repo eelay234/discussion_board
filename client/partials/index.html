@@ -1,0 +1,28 @@
+<table>
+<tr>
+  <td>Name</td>
+  <td>Show</td>
+  <td>Update</td>
+  <td>Delete</td>
+</tr>
+<tr ng-repeat = "friend in friends track by $index">
+  <td>{{friend.first_name}} {{friend.last_name}}</td>
+  <td> <button ng-click = "show($index)">
+       Show
+      </button>
+  </td>
+  <td> <button ng-click = "edit($index)">
+       Edit
+      </button>
+  </td>
+  <td> <button ng-click = "delete($index)">
+       Delete
+      </button>
+  </td>
+</tr>
+</table>
+<a ng-href = '#/new'>
+  <button>
+    New Friend
+  </button>
+</a>

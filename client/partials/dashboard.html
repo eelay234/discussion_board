@@ -1,0 +1,33 @@
+<h2 id="welcome">Welcome, {{ login_user.first_name}}!</h2>
+<p><input type="text" ng-model="filter_name" placeholder="Search"></p>
+<table>
+<tr>
+  <th>category</th>
+  <th>Topic</th>
+  <th>User Name</th>
+  <th>Posts</th>
+</tr>
+<tr ng-repeat = "topic in topics | orderBy: '-created_at' | filter: filter_name">
+  <td>{{ topic.category}}</td>
+  <td><a href="#/topic/{{topic._id}}">{{ topic.title }}</a></td>
+  <td><a href="#/user/{{topic._user._id}}">{{ topic._user.first_name }}, {{ topic._user.last_name }}</a></td>
+  <td> {{ topic.posts.length }}</td>
+</tr>
+</table>
+<h3>Add a New Topic</h3>
+<p ng-show='errMessage' class="err">{{ errMessage }}</p>
+<form ng-submit="add_topic()">
+  Topic: <input type="text" ng-model="new_topic.title" required name = 'title' value=""><br>
+  Description:<br> <textarea name="description" rows="4" cols="40" ng-model="new_topic.description" required ng-minlength="5" ng-maxlength="100"></textarea>
+  <br>Category:
+  <div class="form-group">
+  <select class="form-group" ng-model="new_topic.category" required>
+    <option value="Java">Java</option>
+    <option value="C/C++">C/C++</option>
+    <option value="Perl">Perl</option>
+    <option value="Ruby">Ruby</option>
+  </select>
+</div>
+<br>
+  <input type="submit" value = 'Submit'>
+</form>

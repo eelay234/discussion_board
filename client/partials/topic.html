@@ -1,0 +1,35 @@
+<a href="#/dashboard">dashboard</a> <a href="#/logout">Log out</a>
+<h1 id="title">{{ topic._user.first_name }} posted a topic</h1>
+<h2 id="welcome">{{ topic.title }}!</h2>
+<h2 id="welcome">{{ topic.description }}!</h2>
+Post Your Answer Here:
+<div ng-if="errorMessage_post">{{ errorMessage_post }}</div>
+<form ng-submit="post(topic._id)">
+    <input type="text" ng-model="message" name="message" id="message"><br>
+    <input type="submit" value="Post" id="add-btn">
+</form>
+<div ng-repeat="post in topic.posts | orderBy: '-created_at' ">
+  <hr>
+  {{ post.upvote}}
+  <form ng-submit="upvote(post._id)">
+    <input type="submit" value="^" />
+  </form>
+ {{ post.downvote }}
+ <form ng-submit="downvote(post._id)">
+   <input type="submit" value="v" />
+ </form>
+  <h3><a href="#/user/{{ post._user._id}}">{{ post._user.first_name }}, {{ post._user.last_name }}</a> {{ post.message }}</h3>
+
+  <div class="comment-div" ng-init='c[post._id] = ""' ng-repeat="comment in post.comments | orderBy: 'created_at'" track by $index>
+    <h5><a href="#/user/{{ comment._user._id}}">{{ comment }}, {{ comment._user }}</a> {{ comment.text }}</h5>
+  </div>
+  <div class="comment-div">
+      Post a comment:
+      <form ng-submit=add_comment(post._id)>
+        <input type="text" ng-model="c[post._id]" name="c" id="c"><br>
+        <input type="submit" name="submit" value="Post a comment">
+      </form>
+  </div>
+</div>
+<a href="#/logout">Sign out</a>
+</div>

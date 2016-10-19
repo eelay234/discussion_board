@@ -1,0 +1,28 @@
+<div>
+  <h2>registration</h2>
+  <div ng-if="errorMessage_registration">{{ errorMessage_registration }}</div>
+  <form ng-submit=registration()>
+    First Name:
+    <input type="text" ng-model="user.first_name" ng-model-options="{ updateOn: 'blur' }" /><br />
+    Last Name:
+    <input type="text" ng-model="user.last_name" /><br />
+    Email:
+    <input type="text" ng-model="user.email" /><br />
+    Password:
+    <input type="password" ng-model="user.password" /><br />
+    Confirm Password:
+    <input type="password" ng-model="user.confirm_password" /><br />
+    Birthday:
+    <input type="date" ng-model="user.birthday" /><br />
+    <input type="submit" value="registration">
+  </form>
+  <h2>Log in</h2>
+  <div ng-if="errorMessage_login">{{ errorMessage_login }}</div>
+  <form ng-submit=login()>
+    email:
+    <input type="text" ng-model="user_login.email" value=""/><br />
+    Password:
+    <input type="password" ng-model="user_login.password" value=""/><br />
+    <input type="submit" value="log in">
+  </form>
+</div>
